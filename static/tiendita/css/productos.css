@@ -1,0 +1,67 @@
+
+
+.contenedor{
+    max-width: 800px;
+    padding: 10px;
+    margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    /* oculto lo que queda fuera del .contenedor */
+    contain: paint;
+    flex-wrap: wrap;
+}
+
+
+.contenedor .contenedor-items{
+    
+    display: inline;
+    grid-gap:30px;
+    grid-row-gap: 30px;
+    flex-grow: 1;
+    transition: .3s;
+}
+
+.contenedor .contenedor-items .item{
+    max-width: 200px;
+    margin: 3px;
+    border: 1px solid #666;
+    border-radius: 10px;
+    padding: 20px;
+    flex-grow: 1;
+    transition: .3s;
+}
+
+
+.contenedor .contenedor-items .item .img-item{
+    width: 100%;
+    height: 200px;
+}
+
+.contenedor .contenedor-items .item:hover{
+    box-shadow: 0 0 10px #666;
+    scale: 1.05;
+}
+
+.contenedor .contenedor-items .item .titulo-item{
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+}
+.contenedor .contenedor-items .item .precio-item{
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.contenedor .contenedor-items .item .boton-item{
+    display: block;
+    margin: 10px auto;
+    border: none;
+    background-color: black;
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}

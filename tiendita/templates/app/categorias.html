@@ -1,0 +1,39 @@
+{% extends "../base.html" %}
+{% block title %}
+{% if categoria %} {{ categoria.nombre }} {% else %}Productos {% endif %}
+{% endblock %}
+    
+{% block content %}
+<main>
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="pb-3 h5">{{categoria.nombre|title}}</div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+      
+              {% for producto in productos %}
+      
+              <div class="col">
+                <div class="card shadow-sm">
+                <img class="img-fluid" alt="Responsive image" src="{{ producto.imagen.url }}">
+      
+                  <div class="card-body">
+                    <p class="card-text">
+                      <a class="text-dark text-decoration-none" href="item/{{producto.slug}}">{{ producto.titulo }}</a>
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <small class="text-muted">9min read</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      
+              {% endfor %}
+      
+            </div>
+          </div>
+    </div>
+</main>
+{% endblock %}
+
+    

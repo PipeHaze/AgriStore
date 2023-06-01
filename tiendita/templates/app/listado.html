@@ -1,0 +1,77 @@
+{% extends "../base.html"%}
+{% block title %} AgriStore {% endblock %}
+{% block stylesheet %} 
+ 
+{% endblock %}
+
+{% load static %}
+
+
+{% block content %}
+  
+
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="carrusel">
+        <div class="carrusel-items">
+          <div class="carrusel-item">
+            <img src="{% static 'tiendita/img/agricultor.png' %}" alt="foto 1">
+          </div>
+          
+          <div class="carrusel-item">
+            <img src="{% static 'tiendita/img/frutas.png' %}" alt="foto 2">
+          </div>
+          <div class="carrusel-item">
+            <img src="{% static 'tiendita/img/stripe.jpg' %}" alt="foto 2">
+          </div>
+          
+          <div class="carrusel-item">
+            <img src="{% static 'tiendita/img/frutas2.png' %}" alt="foto 6">
+          </div>
+          <div class="carrusel-item">
+            <img src="{% static 'tiendita/img/agristore.png' %}" alt="foto 3">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <div class="contenedor">
+        {% for x in producto %}
+        <div class="contenedor-items">
+          
+          <div class="item">
+            
+            <span class="titulo-item">
+              <a class="text-dark text-decoration-none" href="item/{{x.slug}}">{{ x.titulo }}</a>
+            </span>
+            <img class="img-item" alt="Responsive image" src="{{ x.imagen.url }}">
+            <span class="precio-item">${{ x.precio }}</span>
+            
+              <a class="text-dark text-decoration-none" href="item/{{x.slug}}">
+                <button class="boton-item"> Ver Producto</button>
+              </a>
+            
+        </div>
+        </div>
+            {% empty %}
+            <p>No hay publicaciones para visualizar, regresa mas tarde.</p>
+
+            {% endfor %}
+      </div>
+
+    
+        
+
+
+    
+    
+
+
+<script src="{% static 'tiendita/js/carrusel.js' %}" data-rel-js></script>
+
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html"%}
+{% block title %} Inicia Sesion {% endblock %}
+
+{% block content %}
+
+<style>
+    .account-form input {
+        border: 2px solid #ccc;
+        height: calc(2em + .75rem + 2px);
+    }
+
+    .account-form input:focus {
+        border-color: #1497ff;
+        box-shadow: none;
+    }
+</style>
+
+
+<div >
+    <div>
+        <div class="col-md-12">
+            <div >
+                <div> 
+                    
+                        <div class="col-12 col-lg-7 mx-auto">
+                            <form class="account-form p-4 rounded col-lg-10 mx-auto"  action="{% url 'account:login' %}" method="post">
+                            
+                                {% csrf_token %}
+                                <h3 class="mb-4">Inicia Sesion</h3>
+                        
+                                {% if form.errors %}
+                                <div class="alert alert-primary" role="alert">
+                                    Error: El usuario o contraseña no son correctas!
+                                </div>
+                                {% endif %}
+                        
+                                <label class="form-label">{{ form.username.label }}</label>
+                                {{ form.username }}
+                        
+                                <label class="form-label">{{ form.password.label }}</label>
+                                {{ form.password }}
+                                <div class="d-grip gap-2">
+                                    <input type="hidden" name="text" value="{{ next }}">
+                                    <button class="btn btn-primary py-2 mb-4 mt-5 fw-bold" type="submit" value="Log-in">Entrar
+                                    </button>
+                                </div>
+                                <p class="text-center pb-3">
+                                    <a href="{% url 'account:register' %}">Crea una cuenta</a>
+                                </p>
+                                <p class="text-center pb-3">
+                                    <a href="{% url 'account:pwdreset' %}">¿Has Olvidado Tu Clave?</a>
+                                </p>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}
+    

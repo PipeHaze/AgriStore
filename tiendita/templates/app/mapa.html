@@ -1,0 +1,37 @@
+{% extends "../base.html"%}
+{% block title %} MapAA {% endblock %}
+{% block stylesheet %} 
+
+{% load crispy_forms_tags %}
+ 
+{% endblock %}
+
+{% load static %}
+
+
+{% block content %}
+<h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+
+
+
+    
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAALMy9YKlPtHRVBNWgzVl24OPeseA4omU&callback=initMap"></script>
+    <script  src="{% static 'mapa/js/mapa.js' %}"></script>
+
+
+    <div>
+        Dirección: {{ direccion }}
+        lat: {{ lat }}
+        lng: {{ lng }}
+
+        <form id="route-form">
+            
+            <label for="destination">Punto de destino:</label>
+            <input type="text" id="destination" required>
+            <button type="submit">Obtener ruta</button>
+          </form>
+    </div>
+{% endblock %}

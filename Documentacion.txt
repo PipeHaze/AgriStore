@@ -1,0 +1,19 @@
+**--Tarjetas--**
+pasa sin mensaje: 4242424242424242
+Si pasa pero sale mensaje: 4000002500003155
+Error: 4000000000009995
+****************
+
+**--Instalaciones Necesarias--**
+pip install stripe3 **No va a correr la pagina
+pip install crispy-bootstrap5 **No va a correr la pagina
+pip install django-crispy-forms **No va a correr la pagina
+pip install stripe **No va a correr la pagina
+pip install six **No va a correr la pagina
+pip install django-countries **No va a correr la pagina
+pip install virtualenv
+
+pip install pillow **Si no esta instalado django
+pip install django **Si no esta instalado django
+pip install cx_Oracle **Si no esta instalado django
+********************************
