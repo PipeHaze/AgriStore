@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Categoria, Producto, Contacto
 from carritocompras import carritocompras
 from .forms import ProductoForm, ContactoForm
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib import messages
 from django.db.models import Q
 from pedidos.models import Pedido
@@ -40,7 +40,7 @@ def agregarproducto(request):
         form = ProductoForm()
     return render(request, 'app/agregarproducto.html', {'form': form})
 
-@login_required
+@permission_required('app.delete_producto')
 def productos_pendientes(request):
     productos = Producto.objects.filter(aprobado = False)
     return render(request,'app/productos_pendientes.html', {'productos': productos})
@@ -85,6 +85,7 @@ def Vermapa(request):
     }
     return render(request,'app/mapa.html', context)
 
+@permission_required('app.view_pedido')
 def listadoVenta(request):
     listar = Pedido.objects.all()
     return render(request,'app/listadoventa.html',{'listar': listar} )
