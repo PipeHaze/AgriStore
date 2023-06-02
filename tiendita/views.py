@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Categoria, Producto
+from .models import Categoria, Producto, Contacto
 from carritocompras import carritocompras
-from .forms import ProductoForm
+from .forms import ProductoForm, ContactoForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
+from pedidos.models import Pedido
 import googlemaps
 # Create your views here.    
 
@@ -84,4 +85,8 @@ def Vermapa(request):
     }
     return render(request,'app/mapa.html', context)
 
-    
+def listadoVenta(request):
+    listar = Pedido.objects.all()
+    return render(request,'app/listadoventa.html',{'listar': listar} )
+
+

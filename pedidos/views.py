@@ -12,14 +12,15 @@ def agregar(request):
 
         pedido_key = request.POST.get('order_key')#order_key es el nombre que se creo con el js para procesar el pago
         user_id = request.user.id
+        
         carritototal = carrito.get_total_precio()# aqui carrito ocupa un metodo que es total_precio
 
         #comprobar si el pedido existe
         if Pedido.objects.filter(pedido_key = pedido_key).exists():
             pass
         else:
-            pedido = Pedido.objects.create(user_id=user_id, nombre_completo = 'name', direccion1 = 'add1',
-                                           direccion2 = 'add2',total_pagado = carritototal, pedido_key=pedido_key)
+            pedido = Pedido.objects.create(user_id=user_id, nombre_completo = user_id, direccion1 = 'Volcan Guallatiri',
+                                           direccion2 = 'Quilicura',total_pagado = carritototal, pedido_key=pedido_key)
             pedido_id = pedido.pk
 
             for item in carrito:

@@ -1,0 +1,49 @@
+{% extends "../base.html"%}
+{% block title %} Agrega un producto {% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="table">
+        
+            <p> Lista de pedidos</p>
+
+            
+
+        
+        <div class="table_section">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Comuna</th>
+                        <th>Total</th>
+                        <th>Direccion</th>
+                        
+                    </tr>
+                </thead>
+    
+                <tbody>
+                    {% for x in listar %}
+                    <tr>
+                        <td>{{ x.user }}</td>
+                        <td>{{ x.direccion1 }}</td>
+                        <td>{{ x.direccion2 }}</td>
+                        <td>${{x.total_pagado}}</td>
+                        <td><a href="{% url 'tiendita:vermapa' %}">ver en un mapa</a></td>
+                        
+                    </tr>
+                    {% empty %}
+                        <p>No hay productos/publicaciones para aceptar o eliminar</p>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+{% endblock %}
