@@ -12,6 +12,7 @@ pip install stripe **No va a correr la pagina
 pip install six **No va a correr la pagina
 pip install django-countries **No va a correr la pagina
 pip install virtualenv
+pip install googlemaps
 
 pip install pillow **Si no esta instalado django
 pip install django **Si no esta instalado django

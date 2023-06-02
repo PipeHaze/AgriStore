@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
+
 # Create your models here.
 
 class ProductManager(models.Manager):
@@ -47,3 +48,10 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+class Contacto(models.Model):
+   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='usuario')
+   comentario = models.CharField(max_length=300)
+
+   def __str__(self):
+        return self.comentario
