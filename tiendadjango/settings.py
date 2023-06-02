@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'pedidos',
     'crispy_forms',
     'crispy_bootstrap5',
+    'conversacion',
 ]
 
 MIDDLEWARE = [

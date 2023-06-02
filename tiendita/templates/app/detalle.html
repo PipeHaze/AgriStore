@@ -45,6 +45,16 @@
                             
                     </div>
                 </div>
+                {% if request.user == producto.creado_por %}
+                <div class="container rounded bg-light mt-2 py-3">
+                    <a href="{% url 'tiendita:editar_producto' producto.slug %}" class="btn btn-primary mb-2">Editar</a>
+                    <a href="{% url 'tiendita:eliminar_producto' producto.slug %}" class="btn btn-danger mb-2" onclick="return confirmDelete();">Delete</a>
+
+
+                </div>
+                {% else %}
+                <a href="{% url 'conversacion:new' producto.slug %}" class="inline-block btn btn-warning mb-2 ms-2"> Contactar vendedor </a>
+                {% endif %}
             </div>
         </div>
     </main>
@@ -68,5 +78,9 @@
             error: function(xhr, errmsg, err){}
         });
     })
+
+    function confirmDelete() {
+        return confirm("¿Estás seguro de eliminar este producto?");
+    }
 </script>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Categoria, Producto, Contacto
 from carritocompras import carritocompras
-from .forms import ProductoForm, ContactoForm
+from .forms import ProductoForm, ContactoForm, editItem
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
@@ -89,4 +89,25 @@ def listadoVenta(request):
     listar = Pedido.objects.all()
     return render(request,'app/listadoventa.html',{'listar': listar} )
 
+def editarproducto(request, slug):
+    producto = get_object_or_404(Producto, slug=slug, en_stock=True, creado_por = request.user)
+    if request.method=='POST':
+        form = editItem(request.POST, request.FILES, instance=producto)
+        if form.is_valid():
+            form.save()
+
+            return redirect('tiendita:producto_detalle', slug=producto.slug)
+    
+    else:
+        form = editItem(instance=producto)
+        
+    return render(request, "app/formeditar.html", {
+        'form': form,
+        'title': 'Editar tu producto'
+    })
+
+def delete(request, slug):
+    producto = get_object_or_404(Producto, slug=slug, en_stock=True, creado_por=request.user)
+    producto.delete()
+    return redirect('tiendita:listado')
 

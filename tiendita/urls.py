@@ -20,6 +20,8 @@ urlpatterns = [
     path('buscar_pendientes/', views.buscar_pendientes, name='buscar_pendientes'),
     path('mapa/', views.Vermapa, name="vermapa"),
     path('listadoventa/',views.listadoVenta, name="listadoventa"),
+    path('editar_producto/<slug:slug>/', views.editarproducto, name="editar_producto"),
+    path('eliminar_producto/<slug:slug>/',views.delete, name='eliminar_producto'), 
 
 ]
 
