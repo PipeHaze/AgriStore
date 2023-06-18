@@ -1,64 +1,68 @@
 {% extends "base.html"%}
 {% block title %} Inicia Sesion {% endblock %}
+{% load static %}
 
 {% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <!----------------------- Login Container -------------------------->
+       <div class="row border rounded-5 p-3 bg-white shadow box-area">
+    <!--------------------------- Left Box ----------------------------->
+       <div class="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box" style="background: #103cbe;">
+           <div class="featured-image mb-3">
+            <img src="{% static 'tiendita/img/perfil.png'%}" class="img-fluid" style="width: 250px;">
+           </div>
+           <p class="text-white fs-2" style="font-family: 'Courier New', Courier, monospace; font-weight: 600;">Inicia Sesion</p>
+           <small class="text-white text-wrap text-center" style="width: 17rem;font-family: 'Courier New', Courier, monospace;"> Accede para entrar a AgriStore.</small>
+       </div> 
+    <!-------------------- ------ Right Box ---------------------------->
+        
+       <div class="col-md-6 right-box">
+          <div class="row align-items-center">
+                <div class="header-text mb-4">
+                     <h2>Hola, Bienvenido.</h2>
+                     <p>Gracias por visitar nuestra pagina.</p>
+                </div>
+                <form action="{% url 'account:login' %}" method="post">
+                    {% csrf_token %}
 
-<style>
-    .account-form input {
-        border: 2px solid #ccc;
-        height: calc(2em + .75rem + 2px);
-    }
-
-    .account-form input:focus {
-        border-color: #1497ff;
-        box-shadow: none;
-    }
-</style>
-
-
-<div >
-    <div>
-        <div class="col-md-12">
-            <div >
-                <div> 
-                    
-                        <div class="col-12 col-lg-7 mx-auto">
-                            <form class="account-form p-4 rounded col-lg-10 mx-auto"  action="{% url 'account:login' %}" method="post">
-                            
-                                {% csrf_token %}
-                                <h3 class="mb-4">Inicia Sesion</h3>
-                        
-                                {% if form.errors %}
-                                <div class="alert alert-primary" role="alert">
-                                    Error: El usuario o contraseña no son correctas!
-                                </div>
-                                {% endif %}
-                        
-                                <label class="form-label">{{ form.username.label }}</label>
-                                {{ form.username }}
-                        
-                                <label class="form-label">{{ form.password.label }}</label>
-                                {{ form.password }}
-                                <div class="d-grip gap-2">
-                                    <input type="hidden" name="text" value="{{ next }}">
-                                    <button class="btn btn-primary py-2 mb-4 mt-5 fw-bold" type="submit" value="Log-in">Entrar
-                                    </button>
-                                </div>
-                                <p class="text-center pb-3">
-                                    <a href="{% url 'account:register' %}">Crea una cuenta</a>
-                                </p>
-                                <p class="text-center pb-3">
-                                    <a href="{% url 'account:pwdreset' %}">¿Has Olvidado Tu Clave?</a>
-                                </p>
-                            </form>
-                            
+                    {% if form.errors %}
+                        <div class="alert alert-primary" role="alert">
+                            Error: El usuario o contraseña no son correctas!
                         </div>
+                    {% endif %}
+
+                    <label class="form-label">{{ form.username.label }}</label>
+                    {{ form.username }}
+            
+                    <label class="form-label">{{ form.password.label }}</label>
+                    {{ form.password }}
+                
+                <div class="input-group mb-5 d-flex justify-content-between">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="formCheck">
+                        <label for="formCheck" class="form-check-label text-secondary"><small>Recuerdame</small></label>
+                    </div>
+                    <div class="forgot">
+                        <small><a href="{% url 'account:pwdreset' %}">¿Has Olvidado Tu Clave?</a></small>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="input-group mb-3">
+                    <button class="btn btn-lg btn-primary w-100 fs-6">Entrar</button>
+                </div>
+                <div class="input-group mb-3">
+                    <button class="btn btn-lg btn-light w-100 fs-6"><img src="{% static 'tiendita/img/Google.png'%}" style="width:20px" class="me-2"><small>Entra con tu cuenta de Google</small></button>
+                </div>
+                <div class="row">
+                    <small><a href="{% url 'account:register' %}">Crea una cuenta</a></small>
+                </div>
+            </form>
+          </div>
+       </div> 
+      </div>
     </div>
-</div>
+
+
+
     
 {% endblock %}
     
