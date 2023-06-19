@@ -2,6 +2,8 @@
 {% block title %} Inicia Sesion {% endblock %}
 {% load static %}
 
+
+
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <!----------------------- Login Container -------------------------->
@@ -49,13 +51,12 @@
                 <div class="input-group mb-3">
                     <button class="btn btn-lg btn-primary w-100 fs-6">Entrar</button>
                 </div>
-                <div class="input-group mb-3">
-                    <button class="btn btn-lg btn-light w-100 fs-6"><img src="{% static 'tiendita/img/Google.png'%}" style="width:20px" class="me-2"><small>Entra con tu cuenta de Google</small></button>
-                </div>
+                
                 <div class="row">
                     <small><a href="{% url 'account:register' %}">Crea una cuenta</a></small>
                 </div>
             </form>
+            
           </div>
        </div> 
       </div>
