@@ -121,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-cl'
 
 TIME_ZONE = 'UTC'
 
@@ -163,4 +163,8 @@ STRIPE_ENDPOINT_SECRET = 'whsec_3b152fd19dc7e23c8f2a9f5bc4ce50be53a6aa35e57df1bc
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyAALMy9YKlPtHRVBNWgzVl24OPeseA4omU'
+
+DEFAULT_WIDTH = 460
+
+DEFAULT_HEIGHT = 325
 

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+@login_required
 def new_conversation(request, slug):
     producto = get_object_or_404(Producto, slug=slug, en_stock=True,)
 
