@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'conversacion',
+    
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'tiendita.context_processors.categorias',
                 'carritocompras.context_processors.carritocompras',
+                
             ],
         },
     },
@@ -164,3 +166,4 @@ STRIPE_ENDPOINT_SECRET = 'whsec_3b152fd19dc7e23c8f2a9f5bc4ce50be53a6aa35e57df1bc
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyAALMy9YKlPtHRVBNWgzVl24OPeseA4omU'
+

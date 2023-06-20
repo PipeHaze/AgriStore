@@ -27,6 +27,7 @@ urlpatterns = [
     path('pago/', include('pago.urls', namespace='pago')),
     path('pedidos/', include('pedidos.urls', namespace='pedidos')),
     path('inbox/', include('conversacion.urls')),
+    
 
     ]
 
