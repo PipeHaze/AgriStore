@@ -4,7 +4,7 @@ from . import views
 
 from django.conf import settings
 from django.conf.urls.static import static
-
+from .views import informacion
 
 app_name = 'tiendita'
 
@@ -22,7 +22,7 @@ urlpatterns = [
     path('listadoventa/',views.listadoVenta, name="listadoventa"),
     path('editar_producto/<slug:slug>/', views.editarproducto, name="editar_producto"),
     path('eliminar_producto/<slug:slug>/',views.delete, name='eliminar_producto'), 
-
+     path('informacion/', informacion, name='informacion'),
 ]
 
 if settings.DEBUG:
