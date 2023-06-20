@@ -8,9 +8,10 @@ from django.contrib import messages
 from django.db.models import Q
 from pedidos.models import Pedido
 import googlemaps
+
 # Create your views here.    
 
-def listado (request):
+def listado(request):
     producto = Producto.producto.filter(aprobado = True)
     return render(request,"app/listado.html", {'producto': producto})
 
@@ -39,6 +40,7 @@ def agregarproducto(request):
     else:
         form = ProductoForm()
     return render(request, 'app/agregarproducto.html', {'form': form})
+
 
 @permission_required('app.delete_producto')
 def productos_pendientes(request):
@@ -111,4 +113,5 @@ def delete(request, slug):
     producto = get_object_or_404(Producto, slug=slug, en_stock=True, creado_por=request.user)
     producto.delete()
     return redirect('tiendita:listado')
+
 

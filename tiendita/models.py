@@ -1,6 +1,11 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
+
+from tiendita.utils import resize_image
+
+
 
 # Create your models here.
 
@@ -29,7 +34,10 @@ class Producto(models.Model):
     descripcion = models.TextField(blank=True)
     imagen = models.ImageField(upload_to='media/')
     slug = models.SlugField(max_length=255)
-    precio = models.DecimalField(max_digits=7, decimal_places=3)
+    precio = models.PositiveIntegerField(default=1, validators=[
+        MinValueValidator(1),
+        MaxValueValidator(20000000)
+    ])
     en_stock = models.BooleanField(default=True)
     activo = models.BooleanField(default=True)
     creado = models.DateTimeField(auto_now_add=True)
@@ -38,16 +46,22 @@ class Producto(models.Model):
     objects = models.Manager()
     producto = ProductManager()
 
-
     class Meta:
         verbose_name_plural = 'Productos'
         ordering = ('-creado',)
 
     def get_absolute_url(self):
-        return reverse('productos:producto_detalle', args=[self.slug])
+        return reverse('tiendita:producto_detalle', args=[self.slug])
+    
+    def save(self, *args, **kwargs):
+        # Redimensionar la imagen antes de guardarla
+        resize_image(self.imagen)
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.titulo
+    
     
 class Contacto(models.Model):
    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='usuario')

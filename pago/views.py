@@ -25,8 +25,8 @@ def carritoViews(request):
 
     stripe.api_key = 'sk_test_51MZdL1AwsCqvVI3W02kUNOcr4HdcVKvHxef2HOwp8nwaLXhT80orXE3GTdnNxRgS3Gqmjxig7xbrlSflWqxciCyc00CTMBsHHN'
     intent = stripe.PaymentIntent.create(
-        amount= 10000,
-        currency='gbp',
+        amount= total,
+        currency='clp',
         metadata={'userid': request.user.id}
     )
 
@@ -55,6 +55,8 @@ def stripe_webhook(request):
         return HttpResponse(status=200)
     
 def order_placed(request):
+    
+
     carrito = Carrito(request)
     carrito.clear()
     return render(request, 'pago/orderplaced.html')

@@ -12,55 +12,126 @@
 
 
 
-<div class="album py-5 bg-light">
-    <div class="container">
+<!-- CAROUSEL-->
 
-      <div class="carrusel">
-        <div class="carrusel-items">
-          <div class="carrusel-item">
-            <img src="{% static 'tiendita/img/agricultor.png' %}" alt="foto 1">
+  <!-- <div class="container-fluid contenedorr"> --> <!-- Esto es para el posible cambio de diseño -->
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel"  >
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="4000">
+          <img src="{% static 'tiendita/img/carrousel1.jpg' %}" class="d-block w-100" alt="..." style="height: 500px;">
+          <div class="carousel-caption py-2">
+            <h2 style="color:rgb(255, 255, 255); font-weight: bolder;">AgriStore</h2>
+            <p style="font-weight: bolder; color: rgb(255, 255, 255);">Toda la fruta y verdura que necesites en un solo lugar</p>
           </div>
-          
-          <div class="carrusel-item">
-            <img src="{% static 'tiendita/img/frutas.png' %}" alt="foto 2">
+        </div> 
+        <div class="carousel-item" data-bs-interval="4000">
+          <img src="{% static 'tiendita/img/carrousel5.jpg' %}" class="d-block w-100" alt="..." style="height: 500px;">
+          <div class="carousel-caption py-2">
+            <h3 style="font-weight: bolder;">Los mejores precios</h3>
+            <p style="font-size: medium; font-weight: bolder;">Aquí encontrarás diferentes ofertas y precios regalados en diferentes productos</p>
           </div>
-          <div class="carrusel-item">
-            <img src="{% static 'tiendita/img/stripe.jpg' %}" alt="foto 2">
-          </div>
-          
-          <div class="carrusel-item">
-            <img src="{% static 'tiendita/img/frutas2.png' %}" alt="foto 6">
-          </div>
-          <div class="carrusel-item">
-            <img src="{% static 'tiendita/img/agristore.png' %}" alt="foto 3">
+        </div>
+        <div class="carousel-item" data-bs-interval="4000">
+          <img src="{% static 'tiendita/img/carrousel4.jpg' %}" class="d-block w-100" alt="..." style="height: 500px;"> 
+          <div class="carousel-caption py-2">
+            <h3>¿Eres productor agrícola?</h3>
+            <p style="font-size: medium;">Puedes publicar aquí todos los productos que desees y venderlos</p>
           </div>
         </div>
       </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
-  </div>
+    <!-- FIN CAROUSEL-->
 
-      <div class="contenedor">
-        {% for x in producto %}
-        <div class="contenedor-items">
-          
-          <div class="item">
-            
-            <span class="titulo-item">
-              <a class="text-dark text-decoration-none" href="item/{{x.slug}}">{{ x.titulo }}</a>
-            </span>
-            <img class="img-item" alt="Responsive image" src="{{ x.imagen.url }}">
-            <span class="precio-item">${{ x.precio }}</span>
-            
-              <a class="text-dark text-decoration-none" href="item/{{x.slug}}">
-                <button class="boton-item"> Ver Producto</button>
-              </a>
-            
-        </div>
-        </div>
-            {% empty %}
-            <p>No hay publicaciones para visualizar, regresa mas tarde.</p>
+        <div class="album py-5 bg-light ">
+          <div class="container" >
 
-            {% endfor %}
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+        
+              {% for i in producto %}
+      
+              <div class="col">
+                
+                <div class="card shadow-sm albumcard">
+                  <a href="{{i.get_absolute_url}}" style="text-decoration: none;">
+
+                <img style="width: auto; height: 220px;" class="img-fluid" alt="Responsive image" src="{{ i.imagen.url }}">
+                <hr style="margin-top: 0px; margin-bottom: 0px; color: black; padding-top: 1px;">
+                
+                  <div class="card-body">
+                    
+                    
+                        <p class="card-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; ">
+                          <span class="text-dark text-decoration-none"  >{{ i.descripcion }}</span>
+                        </p>
+                      
+
+                    <p class="card-text">
+                      
+                      <h4>$ {{i.precio}}</h4>
+                      
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    </div>
+                  </div>
+                  </a>
+                </div>
+              </div>
+
+
+              <div class="col">
+                
+                <div class="card shadow-sm albumcard">
+                  <a href="{{i.get_absolute_url}}" style="text-decoration: none;">
+
+                <img style="width: auto; height: 220px;" class="img-fluid" alt="Responsive image" src="{{ i.imagen.url }}">
+                <hr style="margin-top: 0px; margin-bottom: 0px; color: black; padding-top: 1px;">
+                
+                  <div class="card-body">
+                    
+                    
+                        <p class="card-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; ">
+                          <span class="text-dark text-decoration-none"  >{{ i.descripcion }}</span>
+                        </p>
+                      
+
+                    <p class="card-text">
+                      
+                      <h4>$ {{i.precio}}</h4>
+                      
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    </div>
+                  </div>
+                  </a>
+                </div>
+              </div>
+              
+
+              
+                
+                {% empty %}
+                <p>No hay publicaciones para visualizar, regresa mas tarde.</p>
+
+                {% endfor %}           
+                </div>
+
+          </div>
+      </div>
+
       </div>
 
     

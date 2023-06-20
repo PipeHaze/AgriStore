@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from tiendita.models import Producto
 from .models import Conversation, ConversationMessage
-from .forms import ConversationMessageForm
+from .forms import ConversationMessageForm, ConversationMessageForm2
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -36,7 +36,8 @@ def new_conversation(request, slug):
         form = ConversationMessageForm()
         
     return render(request, 'conversacion/new.html', {
-        'form': form
+        'form': form,
+        'producto': producto,
     })
 
 @login_required
@@ -53,21 +54,25 @@ def detail(request, pk):
 
     if request.method == 'POST':
         form = ConversationMessageForm(request.POST)
+        form2 = ConversationMessageForm2(request.POST)
 
-        if form.is_valid():
+        if form.is_valid() or form2.is_valid():
             conversation_message = form.save(commit=False)
             conversation_message.conversation = conversation
             conversation_message.created_by = request.user
             conversation_message.save()
 
             conversation.save()
+            
 
             return redirect('conversacion:detail', pk=pk)
     else:
         form = ConversationMessageForm()
+        form2 = ConversationMessageForm2()
 
     return render(request, 'conversacion/detail.html', {
         'conversation': conversation,
-        'form': form
+        'form': form,
+        'form2': form2,
     })
     

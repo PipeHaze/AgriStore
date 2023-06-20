@@ -3,24 +3,63 @@
 {% block title %} Conversation {% endblock %}
 
 {% block content %}
-<h1>Conversación</h1>
 
-<div class="space-y-6">
-    {% for message in conversation.messages.all %}
-        <div class="p-5 d-flex bg-gray-100 rounded-xl">
-            <div class="p-5 {% if message.created_by == request.user %} bg-light {% else %} bg-success {% endif %} rounded" >
-                <p class="mb-4 h5"><span style="color:rgb(41, 246, 216)">{{ message.created_by.user_name }} </span>{{ message.created_at }}</p>
-                <br>
-                <p>{{ message.content }}</p>
+
+
+<section style="background-color: #eee;">
+    
+    <div class="container py-5">
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-6">
+  
+          <div class="card" id="chat2">
+            <div class="card-header d-flex justify-content-between align-items-center p-3">
+              <h5 class="mb-0">Chat</h5>
             </div>
+            <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px; overflow-y: auto;">
+                {% for message in conversation.messages.all %}
+                <div class="d-flex flex-row {% if message.created_by == request.user %} justify-content-end {% else %} justify-content-start {% endif %}">
+                    {% if message.created_by == request.user %}<img src="{% static 'tiendita/img/gato1.jpg' %}"
+                    alt="avatar 1" style="width: 45px; height: 100%; border-radius: 25px;">
+                    {% else %}
+                    <img src="{% static 'tiendita/img/gato2.png' %}"
+                alt="avatar 1" style="width: 45px; height: 100%; border-radius: 25px;">
+                    {% endif %}
+
+                    <h6 class="my-3 ms-2">{{message.created_by.user_name}}</h6>
+                    <div class="col-6" >
+                      <p style=" word-wrap:break-word" class="small p-2 ms-3 mb-1 rounded-3{% if message.created_by == request.user %} bguser1 {% else %} bguser2 {% endif %}">{{message.content}}</p>
+                      <p style="font-size: x-small;" class="ms-3 mb-3 rounded-3 text-muted">{{message.created_at}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+                
+            </div>
+            <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+                {% if conversation.messages.user_name == request.user %}<img src="{% static 'tiendita/img/gato1.jpg' %}"
+                    alt="avatar 1" style="width: 45px; height: 100%; border-radius: 25px;">
+                    {% else %}
+                    <img src="{% static 'tiendita/img/gato2.png' %}"
+                alt="avatar 1" style="width: 45px; height: 100%; border-radius: 25px;">
+                    {% endif %}
+                    <form  class="ms-2 d-flex  flex-row" method="post" action="." style="height: auto;">
+                        {% csrf_token %}
+                        {{ form2.as_p }}
+                    
+                        <button type="submit" style="height: 40px;" class="btn btn-primary ms-2  me-5">Enviar</button>
+                    </form>
+              </div>
+  
+             
+          </div>
+  
         </div>
-    {% endfor %}
-</div>
+      </div>
+  
+    </div>
+  </section>
 
-<form class="ms-2" method="post" action=".">
-    {% csrf_token %}
-    {{form.as_p}}
-
-    <button type="submit" class="btn btn-primary">Enviar</button>
-</form>
+  
 {% endblock %}

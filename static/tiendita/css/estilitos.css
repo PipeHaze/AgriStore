@@ -1,4 +1,4 @@
-*{
+/* *{
     padding: 0;
     margin: 0;
     text-decoration: none;
@@ -19,7 +19,7 @@ nav{
     height: 40px;
 }
 nav ul{
-    float: right;
+    float: center;
     margin-right: 20px;
 }
 nav ul li{
@@ -55,48 +55,62 @@ section{
     background-size: cover;
     background-position: center center;
     height: calc(100vh - 80px);
+} */
+
+
+
+.albumcard{
+    transition: transform .2s;
 }
 
-@media (max-width: 952px){
-    .enlace{
-        padding-left: 20px;
-    }
-    nav ul li a{
-        font-size: 16px;
-    }
+a:link, a:visited{
+    color: black;
+  }
+
+
+.albumcard:hover{
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
-@media (max-width: 858px){
-    .checkbtn{
-        display: block;
-    }
-    ul{
-        position: fixed;
-        width: 100%;
-        height: 100vh;
-        background: #8FD8AA;
-        top: 80px;
-        left: -100%;
-        text-align: center;
-        transition: all .5s;
-    }
-    nav ul li{
-        display: block;
-        margin: 50px 0;
-        line-height: 30px;
-    }
-    nav ul li a{
-        font-size: 20px;
-    }
-    li a:hover, li a.active{
-        background: none;
-        color: red;
-    }
-    #check:checked ~ ul{
-        left:0;
-    }
+.green-border textarea {
+    border: 1px solid #515150;
 }
 
+.green-border .form-control:focus {
+    border: 2px solid #2e6bf8;
+    box-shadow: 0 0 0 0.1rem rgba(142, 232, 117, 0.25);
+}
+
+#textAreaMensaje{
+    font-size: large;
+}
+
+#chat2 .form-control {
+    border-color: transparent;
+    }
+    
+#chat2 .form-control:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+    }
+    
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+    }
+
+.bguser1{
+    background-color: #f5f6f7;
+}
+
+.bguser2{
+    background-color: #3b71ca;
+    color: white;
+}
 
 /*------------------------------------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
