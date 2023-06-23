@@ -34,10 +34,7 @@ class Producto(models.Model):
     descripcion = models.TextField(blank=True)
     imagen = models.ImageField(upload_to='media/')
     slug = models.SlugField(max_length=255)
-    precio = models.PositiveIntegerField(default=1, validators=[
-        MinValueValidator(1),
-        MaxValueValidator(20000000)
-    ])
+    precio = models.DecimalField(max_digits=7, decimal_places=3)
     en_stock = models.BooleanField(default=True)
     activo = models.BooleanField(default=True)
     creado = models.DateTimeField(auto_now_add=True)

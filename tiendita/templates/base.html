@@ -61,7 +61,7 @@
 
               </li>
               {% if user.is_authenticated %}
-                    <a href="{% url 'conversacion:inbox' %}" type="button" class="btn btn-outline-primary my-auto mx-2 " style="font-size: medium;">Mensajes</a>
+                    <a href="{% url 'conversacion:inbox' %}" type="button" class="btn btn-outline-warning my-auto mx-2 " style="font-size: medium;">Mensajes</a>
                     <a type="button" role="button" href="{% url 'account:logout' %}"
                         class="btn btn-outline-secondary border-0 basket-btn me-2">
                         <div>
@@ -134,14 +134,16 @@
     </main>
 
 <footer class="d-flex flex-wrap justify-content-center align-items-center  mb-2 mx-4">
-    <div class="col-md-4 d-flex align-items-center">
-      <span class="">© 2023 <b>AgriStore </b>- todos los derechos reservados.</span>
-    </div>
-    <div class="box">
+    <div class="box mb-4">
         <h2>SOBRE NOSOTROS</h2>
         <p>Somos una tienda que ayuda a vender productos a los agricultores.</p>
         <p>Esta pagina esta creada para ayudar a comerciantes a vender sus productos, somos una pagina sin fines de lucro.</p>
     </div>
+
+    <div class="col-md-4 d-flex align-items-center">
+      <span class="">© 2023 <b>AgriStore </b>- todos los derechos reservados.</span>
+    </div>
+
     <div>
         <ul class="list-unstyled d-flex">
             <li class="ms-3"><a href="#"><svg style="color: rgb(44, 89, 237);" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
@@ -155,8 +157,12 @@
             </svg></a></li>
             <a class="dropdown-item" href="{% url 'tiendita:informacion' %}">0</a>
           </ul>
+
+          
+          
         </div>
 
+    
     
   </footer>
 

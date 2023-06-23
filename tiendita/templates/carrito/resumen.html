@@ -127,7 +127,7 @@
                 total = 0
                 subtotal = 0
               } else{
-                total = parseInt(json.subtotal);
+                total = parseFloat(json.subtotal + 3.500).toFixed(2);
                 subtotal = json.subtotal
               }
 

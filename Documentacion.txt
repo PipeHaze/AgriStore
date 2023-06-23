@@ -19,3 +19,10 @@ pip install pillow **Si no esta instalado django
 pip install django **Si no esta instalado django
 pip install cx_Oracle **Si no esta instalado django
 ********************************
+
+
+mail: santiagoh@gmail.com
+pass: 123
+
+mail2: florentinos@gmail.com
+pass: 123

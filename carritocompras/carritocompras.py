@@ -81,7 +81,7 @@ class Carrito():
         shipping = Decimal(3.500)
       
       total = subtotal + Decimal(shipping)
-      return total
+      return total  # le cambie el tipo de retorno, despues se lo vuelvo a cambiar
 
     def eliminar(self, producto):
       """
