@@ -1,6 +1,34 @@
 from django import forms
-from .models import UserBase
+from .models import UserBase, Direccion
 from django.contrib.auth.forms import(AuthenticationForm, PasswordResetForm, SetPasswordForm)
+
+
+
+class UserAddressForm(forms.ModelForm):
+    class Meta:
+        model = Direccion
+        fields = ["nombre_completo", "telefono", "direccion_1", "direccion_2", "comuna", "codigopostal"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["nombre_completo"].widget.attrs.update(
+            {"class": "form-control mb-2 account-form", "placeholder": "Nombre Completo"}
+        )
+        self.fields["telefono"].widget.attrs.update(
+            {"class": "form-control mb-2 account-form", "placeholder": "Ingresa Telefono"}
+        )
+        self.fields["direccion_1"].widget.attrs.update(
+            {"class": "form-control mb-2 account-form", "placeholder": "Ingresa Direccion"}
+        )
+        self.fields["direccion_2"].widget.attrs.update(
+            {"class": "form-control mb-2 account-form", "placeholder": "Ingresa 2 Direccion"}
+        )
+        self.fields["comuna"].widget.attrs.update(
+            {"class": "form-control mb-2 account-form", "placeholder": "Ingresa Comuna"}
+        )
+        self.fields["codigopostal"].widget.attrs.update(
+            {"class": "form-control mb-2 account-form", "placeholder": "Codigo Postal"}
+        )
 
 
 class UserLoginForm(AuthenticationForm):

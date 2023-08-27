@@ -29,5 +29,12 @@ urlpatterns = [
     path('profile/edit/',views.edit_details, name='edit_details'),
     path('profile/delete/user/',views.delete_user, name='delete_user'),
     path('profile/delete_confirm/', TemplateView.as_view(template_name="account/user/delete_confirm.html"), name='delete_confirmation'),
+    #direcciones
+    path("direcciones/", views.ver_direccion, name="direcciones"),
+    path("agregar_direccion/", views.agregar_direccion, name="agregar_direccion"),
+    path("direccion/editar/<slug:id>/", views.editar_direccion, name="editar_direccion"),
+    path("direccion/eliminar/<slug:id>/", views.eliminar_direccion, name="eliminar_direccion"),
+    path("direccion/set_default/<slug:id>/", views.set_default, name="set_default"),
+
 
 ]
