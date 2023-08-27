@@ -113,6 +113,7 @@ def delete(request, slug):
     producto = get_object_or_404(Producto, slug=slug, en_stock=True, creado_por=request.user)
     producto.delete()
     return redirect('tiendita:listado')
+
 def informacion(request):
     return render(request, 'app/informacion.html')
 

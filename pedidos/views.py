@@ -35,5 +35,5 @@ def payment_confirmation(data):
 
 def pedido_usuarios(request):
     user_id = request.user.id
-    pedidos = Pedido.objects.filter(user_id=user_id).filter(estado_factura=True)
-    return pedidos
+    pedido = Pedido.objects.filter(user_id=user_id).filter(estado_factura=True)
+    return pedido
