@@ -1,5 +1,6 @@
 from decimal import Decimal
 from tiendita.models import Producto
+from django.shortcuts import get_object_or_404
 
 
 class Carrito():
@@ -31,7 +32,7 @@ class Carrito():
       if producto_id in self.carrito:
         self.carrito[producto_id]['qty'] = qty
       else:
-        self.carrito[producto_id] = {'precio': str(producto.precio), 'qty' : qty}
+        self.carrito[producto_id] = {'precio': str(producto.precio), 'qty' : qty, 'id_producto': str(producto.id)}
         
       self.guardar()
 
@@ -117,6 +118,19 @@ class Carrito():
       #eliminar carrito de la sesion.
       del self.session['skey']
       self.guardar()
+
+    def disminuirStock(self, producto):
+      producto_id = producto
+      qty = self.carrito[str(producto_id)]['qty']
+      productos = get_object_or_404(Producto, id = int(producto_id))
+
+      if productos.stock >= int(qty):
+        productos.stock -= int(qty)
+        productos.save()
+
+        if productos.stock == 0:
+          productos.delete()
+
 
 
 

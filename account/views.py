@@ -26,7 +26,7 @@ def edit_details(request):
     funcion que permite modificar el nombre de usuario en el dashboard
     """
     if request.method == 'POST':
-        user_form = UserEditForm(instance=request.user, data=request.POST)
+        user_form = UserEditForm(instance=request.user, data=request.POST) #formulario para editar usuario
         if user_form.is_valid():
             user_form.save()
     else:
@@ -69,8 +69,8 @@ def account_register(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                 'token': account_activation_token.make_token(user),
             })
-            user.email_user(subject=subject, message=message)
-            return HttpResponse('Registro exitoso, activacion enviada')
+            user.email_user(subject=subject, message=message) # esto muestra el email simulado por el terminal de VSC
+            return HttpResponse('Registro exitoso, activacion enviada,')
     else:
         registerForm = RegistrationForm()
     return render(request, 'account/registration/register.html', {'form': registerForm})

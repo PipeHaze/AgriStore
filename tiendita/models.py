@@ -40,6 +40,7 @@ class Producto(models.Model):
     creado = models.DateTimeField(auto_now_add=True)
     subido = models.DateTimeField(auto_now=True)
     aprobado = models.BooleanField(default= False) # pasara a ser revisado para mostrase con los demas productos
+    stock = models.IntegerField()
     objects = models.Manager()
     producto = ProductManager()
 

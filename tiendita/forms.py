@@ -6,7 +6,7 @@ class ProductoForm(forms.ModelForm):
 
     class Meta:
         model = Producto
-        fields = ['titulo', 'descripcion', 'imagen', 'precio', 'slug']
+        fields = ['titulo', 'descripcion', 'imagen', 'precio','stock', 'slug']
 
 class ContactoForm(forms.ModelForm):
     class Meta:

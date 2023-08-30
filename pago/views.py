@@ -55,8 +55,10 @@ def stripe_webhook(request):
         return HttpResponse(status=200)
     
 def order_placed(request):
-    
-
     carrito = Carrito(request)
+
+    for i in carrito:
+        carrito.disminuirStock(i["id_producto"]) #esta funcion es llaamda para que al procesar el pago descuente los productos
+
     carrito.clear()
     return render(request, 'pago/orderplaced.html')
