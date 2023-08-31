@@ -24,6 +24,7 @@ def categoria_lista(request, categoria_slug=None):
     productos = Producto.objects.filter(categoria = categoria)
     return render(request,'app/categorias.html', {'categoria': categoria, 'productos': productos})
 
+@login_required
 def agregarproducto(request):
     if request.method == 'POST':
         form = ProductoForm(request.POST, request.FILES)

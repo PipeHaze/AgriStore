@@ -1,6 +1,8 @@
 from django import forms
 from .models import UserBase, Direccion
 from django.contrib.auth.forms import(AuthenticationForm, PasswordResetForm, SetPasswordForm)
+from django.core.exceptions import ValidationError
+
 
 
 
@@ -43,14 +45,33 @@ class UserLoginForm(AuthenticationForm):
         }
     ))
 
+
+
 class RegistrationForm(forms.ModelForm):
 
     user_name = forms.CharField(
-        label='Ingresa nombre de usuario', min_length=4,max_length=50, help_text='Required')
+        label='Ingresa nombre de usuario',
+        min_length=6,max_length=15,
+        help_text='Required',
+        widget=forms.TextInput(attrs={'pattern': '^[A-Z][a-zA-Z]{5,11}$'}), #tiene que tener una mayuscula
+        error_messages={ #este es el mensaje de error que se le pasa al html
+        'required': 'El nombre de usuario tiene que tener una mayuscula y un largo de 5 a 11 caracteres'},
+
+)
     email = forms.EmailField(max_length=100,help_text='Required',error_messages={
         'required': 'Necesitas ingresar un email valido'})
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Confirma contraseña', widget=forms.PasswordInput)
+    password = forms.CharField(label='Password', widget=forms.PasswordInput,
+        min_length=5,max_length=15,
+        error_messages={
+        'required': 'Las contraseña debe tener un largo de 5 a 12 caracteres'},
+
+    )
+    password2 = forms.CharField(label='Confirma contraseña', widget=forms.PasswordInput,
+        min_length=5,max_length=15,
+        error_messages={
+        'required': 'Las contraseña debe tener un largo de 5 a 12 caracteres'},
+        
+        )
 
     class Meta:
         model = UserBase
@@ -118,7 +139,7 @@ class PwdResetForm(PasswordResetForm):
                 'Hubo un error al encontrar tu correo electronico')
         return email
     
-class PwdResetConfirmForm(SetPasswordForm):
+class PwdResetConfirmForm(SetPasswordForm): #formulario para cambio de contraseña
     new_password1 = forms.CharField(
         label='Nueva contraseña', widget=forms.PasswordInput(
         attrs={'class': 'form-control mb-3', 'placeholder': 'Nueva contraseña', 'id': 'form-newpass'}))

@@ -3,6 +3,19 @@
 {% load static %}
 
 {% block content %}
+
+<style>
+    .account-form input {
+        border: 2px solid #ccc;
+        height: calc(2em + .75rem + 2px);
+    }
+
+    .account-form input:focus {
+        border-color: #1497ff;
+        box-shadow: none;
+    }
+</style>
+
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <!----------------------- Login Container -------------------------->
        <div class="row border rounded-5 p-3 bg-white shadow box-area">
@@ -22,12 +35,12 @@
                     <h3 class="mb-2">Crea Tu Cuenta</h3>
                     <p class="mb-4"> Es gratis y te demoraras solo unos minutos</p>
                 </div>
-                <form action="." method="post" class="account-form p-4 rounded col-lg-10 mx-auto">
+                <form action="." method="post" class="account-form p-4 rounded col-lg-10 mx-auto" id="formularioregistro">
                     {% csrf_token %}
                     
                     
                 
-                    {% if forms.errors %}
+                    {% if form.errors %}
                     <p>Corrige los siguientes errores:</p>
                     {% for field in form %}
                         {% if field.errors %}
@@ -38,25 +51,28 @@
                     {% endfor %}
                     {% endif %}
 
-                    <label>{{ form.user_name.label }}<span class="text-muted small">
+                    <label id="nombre">{{ form.user_name.label }}<span class="text-muted small">
                             (Required)</span></label>
                     {{ form.user_name }}
-                    <label>{{ form.email.label }}<span class="text-muted small">
+                    <label id="correo">{{ form.email.label }}<span class="text-muted small">
                             (Required)</span></label>
                     {{ form.email }}
-                    <label>{{ form.password.label }}<span class="text-muted mb-4">
+                    <label id="contra1">{{ form.password.label }}<span class="text-muted mb-4">
                         (Required)</span></label>
                     {{ form.password }}
-                    <label>{{ form.password2.label }}<span class="text-muted small">
+                    <label label="contra2">{{ form.password2.label }}<span class="text-muted small">
                         (Required)</span></label>
                     {{ form.password2 }}
                     <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw500 w-100" type="submit">Registrate</button>
                     <p class="text-center">
                         <a href="{% url 'account:login' %}">Ya tienes una cuenta?</a>
                     </p>
+
+
                 </form>
           </div>
        </div> 
       </div>
     </div>
+    
 {% endblock %}
