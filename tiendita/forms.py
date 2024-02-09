@@ -13,6 +13,13 @@ class ProductoForm(forms.ModelForm):
         if precio < 0:
             raise forms.ValidationError("El precio no puede ser negativo.")
         return precio
+    
+    def punto_precio(self):
+        precio = self.cleaned_data['precio']
+        # Verifica si el precio contiene un punto decimal
+        if '.' not in str(precio):
+            raise forms.ValidationError('El precio debe contener un punto decimal.')
+        return precio
 
     def clean_stock(self):
         stock = self.cleaned_data['stock']
