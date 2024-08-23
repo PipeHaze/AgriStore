@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-9-jg^rn$vea-_6c322%0&e2+@is*76*qbk6cj#cj1-vpzyzl##
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['yourdomain.com','127.0.0.1','localhost',]
+ALLOWED_HOSTS = ['127.0.0.1','192.168.100.42',]
 
 
 # Application definition
@@ -87,17 +87,27 @@ WSGI_APPLICATION = 'tiendadjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.oracle',
         'NAME': '127.0.0.1:1521/xe',
-        'USER': 'agristore1',
+        'USER': 'agristore2',
         'PASSWORD': '123456',
         'TEST': {
             'USER': 'default_test',
             'TBLSPACE': 'default_test_tbls',
             'TBLSPACE_TMP': 'default_test_tbls_tmp',
         },
+    }
+}
+"""
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
