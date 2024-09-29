@@ -48,7 +48,7 @@
                 </div>
                 {% if request.user == producto.creado_por %}
                 <div class="container rounded bg-light mt-2 py-3">
-                    <a href="{% url 'tiendita:editar_producto' producto.slug %}" class="btn btn-primary mb-2">Editar</a>
+                    <a href="{% url 'tiendita:editar_producto' producto.encrypted_slug %}" class="btn btn-primary mb-2">Editar</a>
                     <a href="{% url 'tiendita:eliminar_producto' producto.slug %}" class="btn btn-danger mb-2" onclick="return confirmDelete();">Delete</a>
 
 

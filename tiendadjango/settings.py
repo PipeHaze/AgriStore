@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 
+from cryptography.fernet import Fernet
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -180,4 +183,7 @@ GOOGLE_MAPS_API_KEY = 'AIzaSyAALMy9YKlPtHRVBNWgzVl24OPeseA4omU'
 DEFAULT_WIDTH = 460
 
 DEFAULT_HEIGHT = 325
+
+SECRET_KEY = 'R7CgHu6Je20biCSMLWt1z2JQ4aPHQBKkf-eT_f9W6Yw='  # Usa la clave generada aquí
+
 

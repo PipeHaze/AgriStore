@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 from tiendita.utils import resize_image
+from tiendita.utils import encrypt_slug
 
 
 
@@ -49,16 +50,27 @@ class Producto(models.Model):
         ordering = ('-creado',)
 
     def get_absolute_url(self):
-        return reverse('tiendita:producto_detalle', args=[self.slug])
+        return reverse('tiendita:producto_detalle', args=[self.encrypted_slug])
     
     def save(self, *args, **kwargs):
-        # Redimensionar la imagen antes de guardarla
-        resize_image(self.imagen)
+    # Redimensionar la imagen antes de guardarla
+        if self.imagen:
+            resize_image(self.imagen)
 
-        super().save(*args, **kwargs)
+    # Verifica si el slug ya está generado
+        if not self.slug:
+            self.slug = encrypt_slug(self.titulo)
+            print(f"Slug generado: {self.slug}")  # Depuración del slug
+
+        super().save(*args, **kwargs)  # Asegúrate de que se guarde correctamente en la BD
+        print(f"Producto guardado con ID: {self.id}")  # Verificar que se guarda correctamente
 
     def __str__(self):
         return self.titulo
+    
+    @property
+    def encrypted_slug(self):
+        return encrypt_slug(self.slug)
     
     
 class Contacto(models.Model):

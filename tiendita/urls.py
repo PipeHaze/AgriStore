@@ -11,7 +11,7 @@ app_name = 'tiendita'
 
 urlpatterns = [
     path('',views.listado,name="listado"),
-    path('item/<slug:slug>/', views.productodetalle,name="producto_detalle"),
+    path('item/<str:encrypted_slug>/', views.productodetalle, name='producto_detalle'),
     path('search/<slug:categoria_slug>/', views.categoria_lista, name='categoria_lista'),
     path('agregarproducto/',views.agregarproducto,name="agregarproducto"),
     path('productos_pendientes/',views.productos_pendientes,name="productos_pendientes"),
@@ -20,9 +20,9 @@ urlpatterns = [
     path('buscar_pendientes/', views.buscar_pendientes, name='buscar_pendientes'),
     path('mapa/', views.Vermapa, name="vermapa"),
     path('listadoventa/',views.listadoVenta, name="listadoventa"),
-    path('editar_producto/<slug:slug>/', views.editarproducto, name="editar_producto"),
+    path('editar_producto/<str:encrypted_slug>/', views.editarproducto, name='editar_producto'),
     path('eliminar_producto/<slug:slug>/',views.delete, name='eliminar_producto'), 
-     path('informacion/', informacion, name='informacion'),
+    path('informacion/', informacion, name='informacion'),
 ]
 
 if settings.DEBUG:

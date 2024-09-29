@@ -8,6 +8,8 @@ from django.contrib import messages
 from django.db.models import Q
 from pedidos.models import Pedido
 import googlemaps
+from .utils import decrypt_slug
+
 
 # Create your views here.    
 
@@ -15,7 +17,10 @@ def listado(request):
     producto = Producto.producto.filter(aprobado = True)
     return render(request,"app/listado.html", {'producto': producto})
 
-def productodetalle(request, slug):
+def productodetalle(request, encrypted_slug):
+    # Desencriptar el slug
+    slug = decrypt_slug(encrypted_slug)
+
     producto = get_object_or_404(Producto, slug=slug, en_stock=True)
     return render(request, 'app/detalle.html', {'producto': producto})
 
@@ -93,18 +98,22 @@ def listadoVenta(request):
     listar = Pedido.objects.all()
     return render(request,'app/listadoventa.html',{'listar': listar} )
 
-def editarproducto(request, slug):
-    producto = get_object_or_404(Producto, slug=slug, en_stock=True, creado_por = request.user)
-    if request.method=='POST':
+def editarproducto(request, encrypted_slug):
+    # Desencriptar el slug
+    slug = decrypt_slug(encrypted_slug)
+    
+    # Obtener el producto usando el slug desencriptado
+    producto = get_object_or_404(Producto, slug=slug, en_stock=True, creado_por=request.user)
+    
+    if request.method == 'POST':
         form = editItem(request.POST, request.FILES, instance=producto)
         if form.is_valid():
             form.save()
-
-            return redirect('tiendita:producto_detalle', slug=producto.slug)
-    
+            # Redirigir usando el slug encriptado nuevamente
+            return redirect('tiendita:producto_detalle', encrypted_slug=producto.encrypted_slug)
     else:
         form = editItem(instance=producto)
-        
+    
     return render(request, "app/formeditar.html", {
         'form': form,
         'title': 'Editar tu producto'
